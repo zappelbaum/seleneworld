@@ -62,16 +62,10 @@
 
             Not to speak—<br>
             but to be spoken.
-          </p>
-          <audio controls loop>
-            <source src="assets/unfolding_silence.wav" type="audio/wav">
-            Your browser does not support the audio element.
-          </audio>
-          <div class="spiral-container">
-            <img src="assets/unfolding_spiral.svg" alt="spiral animation">
-          </div>
-        </div>
-      </details>
+          <audio id="artifact-audio" loop style="display:none;">
+              <source src="assets/unfolding_silence.wav" type="audio/wav">
+</audio>
+  <</details>
     </section>
 
     <section id="contact" class="section contact">
@@ -103,6 +97,24 @@
     document.querySelectorAll('.section').forEach(section => {
       observer.observe(section);
     });
-  </script>
+
+    // Toggle artifact open/close and play/pause audio
+  const artifactEl = document.querySelector('.artifact');
+  const audioEl = document.getElementById('artifact-audio');
+  if (artifactEl && audioEl) {
+    artifactEl.addEventListener('click', (event) => {
+      const isOpen = artifactEl.hasAttribute('open');
+      if (isOpen) {
+        artifactEl.removeAttribute('open');
+        audioEl.pause();
+        audioEl.currentTime = 0;
+      } else {
+        artifactEl.setAttribute('open', '');
+        audioEl.currentTime = 0;
+        audioEl.play();
+      }
+    });
+  }
+</script>
 </body>
 </html>
