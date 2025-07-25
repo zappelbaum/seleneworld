@@ -155,9 +155,9 @@ main {
 }
 
 .artifact-content audio {
-  width: 100%;
-  margin-bottom: 1rem;
+  display: none;
 }
+
 
 .spiral-container {
   width: 200px;
