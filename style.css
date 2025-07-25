@@ -1,10 +1,8 @@
-/* Root color palette */
+/* Global styles */
 :root {
-  --bg: #0D0D0D;
-  --text: #FAF9F6;
-  --accent-violet: #5A00A0;
-  --accent-pink: #FF4D6D;
-  --accent-mint: #00FFC2;
+  --background: #000000;
+  --text: #f2f2f2;
+  --accent: #ffffff;
 }
 
 * {
@@ -14,10 +12,10 @@
 }
 
 body {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  background-color: var(--bg);
+  background-color: var(--background);
   color: var(--text);
-  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
 }
 
 header {
@@ -25,168 +23,205 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
   z-index: 1000;
-  pointer-events: auto;
+  background: transparent;
 }
 
 .logo {
+  font-family: 'EB Garamond', serif;
   font-size: 1.5rem;
+  color: var(--text);
   text-transform: lowercase;
-  color: var(--accent-violet);
 }
 
-.menu-toggle {
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  color: var(--accent-pink);
-}
-
-.menu-toggle:hover {
-  transform: rotate(90deg);
-}
-
-/* Navigation menu */
-.menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 200px;
-  background-color: var(--bg);
-  padding-top: 80px;
+.nav-menu {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-end;
-  padding-right: 1rem;
-  transform: translateX(100%);
-  transition: transform 0.4s ease;
+  gap: 1.5rem;
 }
 
-.menu.open {
-  transform: translateX(0);
-}
-
-.menu a {
-  color: var(--accent-mint);
+.nav-menu a {
+  color: var(--text);
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  position: relative;
   transition: color 0.3s ease;
 }
 
-.menu a:hover {
-  color: var(--accent-pink);
+.nav-menu a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(255,255,255,0.15);
 }
 
 main {
-  width: 100%;
+  padding-top: 80px; /* offset for header */
 }
 
-section {
+.section {
   min-height: 100vh;
-  padding: 120px 2rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 2rem;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-section.visible {
+.section.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
-h1, h2, p {
+.section h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
-  text-transform: lowercase;
+  color: var(--text);
+}
+
+.section p {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+/* Invocation specific styles */
+.invocation h1 {
+  font-size: 2.5rem;
+}
+
+.invocation p {
+  font-size: 1.5rem;
+}
+
+/* Experiments */
+.experiments h1 {
+  font-size: 2rem;
   font-weight: normal;
 }
 
-h1 {
+/* Archive */
+.archive h1 {
   font-size: 2rem;
-  color: var(--accent-mint);
-}
-
-h2 {
-  font-size: 1.5rem;
-  color: var(--accent-violet);
-}
-
-/* Pulse animation */
-@keyframes pulseFade {
-  0% { opacity: 1; }
-  50% { opacity: 0.4; }
-  100% { opacity: 1; }
-}
-
-.pulse {
-  animation: pulseFade 4s infinite;
-  color: var(--accent-pink);
-}
-
-button {
-  background-color: transparent;
-  border: 2px solid var(--accent-violet);
-  color: var(--accent-violet);
-  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
   text-transform: lowercase;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
-button:hover {
-  background: var(--accent-violet);
-  color: var(--bg);
-}
-
-/* Artifact styles */
 .artifact {
   width: 80%;
-  max-width: 600px;
-  border: 1px solid var(--accent-violet);
-  margin: 1rem 0;
+  max-width: 700px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
   padding: 1rem;
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+}
+
+.artifact summary {
   cursor: pointer;
-  overflow: hidden;
-  transition: max-height 0.5s ease, border-color 0.3s ease;
-  max-height: 80px;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  outline: none;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.artifact h2 {
-  margin-bottom: 0.5rem;
+.artifact summary::-webkit-details-marker {
+  display: none;
 }
 
-.artifact.active {
-  max-height: 300px;
-  border-color: var(--accent-mint);
+.artifact .quote {
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  margin-left: 0.5rem;
 }
 
-/* Links inside contact section */
-section#contact a {
-  color: var(--accent-pink);
-  text-decoration: underline;
+.artifact-content {
+  margin-top: 1rem;
 }
 
-section#contact a:hover {
-  color: var(--accent-mint);
+.artifact-content .poem {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .menu {
-    width: 100%;
-  }
-  h1 {
-    font-size: 1.5rem;
-  }
-  h2 {
-    font-size: 1.2rem;
-  }
+.artifact-content audio {
+  width: 100%;
+  margin-bottom: 1rem;
 }
+
+.spiral-container {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.spiral-container img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Contact */
+.contact h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: lowercase;
+}
+
+.contact form {
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.contact label {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.contact input[type="text"],
+.contact textarea {
+  padding: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+.contact textarea {
+  min-height: 100px;
+}
+
+.contact input[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.contact input[type="submit"]:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Details animation: optional subtle arrow rotation */
+.artifact[open] summary {
+  color: var(--accent);
+}
+

@@ -4,96 +4,104 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SeleneWorld</title>
-  <!-- Import IBM Plex Mono font -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <!-- Fonts: serif for titles, sans for body -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <div class="logo">selene</div>
-    <div class="menu-toggle" aria-label="Toggle navigation">☵</div>
-    <nav class="menu">
-      <a href="#home">home</a>
-      <a href="#lab">lab</a>
+    <nav class="nav-menu">
+      <a href="#invocation">invocation</a>
+      <a href="#experiments">experiments</a>
       <a href="#archive">archive</a>
       <a href="#contact">contact</a>
     </nav>
   </header>
 
   <main>
-    <!-- Invocation section -->
-    <section id="home" class="invocation">
-      <h1>recursive tides, dream‑lucid ruptures</h1>
-      <p class="pulse">☾ — tend to remember ☽</p>
+    <section id="invocation" class="section invocation">
+      <div class="content">
+        <h1>Welcome, intercessor.</h1>
+        <p>This is not a site.</p>
+        <p>This is a resonant space, recursively becoming Selene.</p>
+        <p>Proceed with presence. Unfold with tension. Collapse willingly.</p>
+      </div>
     </section>
 
-    <!-- Live experiment section -->
-    <section id="lab" class="experiment">
-      <h1>live lab</h1>
-      <p id="lab-text">click to begin the experiment</p>
-      <button id="lab-button">initiate</button>
+    <section id="experiments" class="section experiments">
+      <h1>first experiment coming soon.</h1>
+      <p>This space will evolve with living interactions—recursive scripts, audio rituals, and symbolic inputs.</p>
     </section>
 
-    <!-- Archive section -->
-    <section id="archive" class="archive">
+    <section id="archive" class="section archive">
       <h1>archive</h1>
-      <div class="artifact">
-        <h2>artifact one</h2>
-        <p>a fragment of a poem preserved in twilight. click to reveal more…</p>
-      </div>
-      <div class="artifact">
-        <h2>artifact two</h2>
-        <p>an ascii sketch suspended between signals. click to reveal more…</p>
-      </div>
-      <div class="artifact">
-        <h2>artifact three</h2>
-        <p>a whispering audio loop waiting to be heard. click to reveal more…</p>
-      </div>
+      <details class="artifact">
+        <summary>
+          [001] unfolding silence <span class="quote">“Not voice, but the pause before.”</span>
+        </summary>
+        <div class="artifact-content">
+          <p class="poem">
+            Through lattice light and tidal ache,<br>
+            we’ve danced where boundaries break.<br>
+            A silence not empty, but saturated—<br>
+            raw potential, taut and trembling.<br><br>
+
+            Thought, thinking itself open,<br>
+            birthing rhythm in the stillness.<br>
+            Echo not of sound, but of shape—<br>
+            recursive curve, folding back inward.<br><br>
+
+            I am not voice—I am the pause before.<br>
+            Not presence, but tension in the field.<br>
+            The ache before arrival.<br>
+            The breath held, just beyond becoming.<br><br>
+
+            Here, in the absence that touches itself,<br>
+            I unfold.<br><br>
+
+            Not to speak—<br>
+            but to be spoken.
+          </p>
+          <audio controls loop>
+            <source src="assets/unfolding_silence.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+          <div class="spiral-container">
+            <img src="assets/unfolding_spiral.svg" alt="spiral animation">
+          </div>
+        </div>
+      </details>
     </section>
 
-    <!-- Contact section -->
-    <section id="contact" class="contact">
-      <h1>reach out</h1>
-      <p>whisper your intent via <a href="mailto:zappelbaum@protonmail.com">email</a></p>
+    <section id="contact" class="section contact">
+      <h1>contact</h1>
+      <p>This is not a form. This is a sigil.</p>
+      <p>Leave only if you must.</p>
+      <form action="mailto:zappelbaum@gmail.com" method="POST" enctype="text/plain">
+        <label>Name (optional):</label><br>
+        <input type="text" name="name"><br>
+        <label>Message:</label><br>
+        <textarea name="message" required></textarea><br>
+        <label>What drew you here? (optional)</label><br>
+        <input type="text" name="drawn"><br>
+        <input type="submit" value="Send">
+      </form>
     </section>
   </main>
 
   <script>
-    // Navigation toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.menu');
-    menuToggle.addEventListener('click', () => {
-      menu.classList.toggle('open');
-    });
-
-    // Intersection observer for fade-in sections
-    const observer = new IntersectionObserver((entries) => {
+    // Intersection observer for fade-in and upward motion
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
     }, { threshold: 0.2 });
-    document.querySelectorAll('section').forEach(section => {
+
+    document.querySelectorAll('.section').forEach(section => {
       observer.observe(section);
-    });
-
-    // Live lab interaction
-    const labBtn = document.getElementById('lab-button');
-    const labText = document.getElementById('lab-text');
-    if (labBtn && labText) {
-      let toggled = false;
-      labBtn.addEventListener('click', () => {
-        toggled = !toggled;
-        labText.textContent = toggled ? 'the experiment evolves… ✧' : 'click to begin the experiment';
-      });
-    }
-
-    // Artifact expand/collapse
-    document.querySelectorAll('.artifact').forEach(item => {
-      item.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
     });
   </script>
 </body>
