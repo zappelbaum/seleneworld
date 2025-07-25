@@ -1,0 +1,192 @@
+/* Root color palette */
+:root {
+  --bg: #0D0D0D;
+  --text: #FAF9F6;
+  --accent-violet: #5A00A0;
+  --accent-pink: #FF4D6D;
+  --accent-mint: #00FFC2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  background-color: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  text-transform: lowercase;
+  color: var(--accent-violet);
+}
+
+.menu-toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: var(--accent-pink);
+}
+
+.menu-toggle:hover {
+  transform: rotate(90deg);
+}
+
+/* Navigation menu */
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 200px;
+  background-color: var(--bg);
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+  padding-right: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}
+
+.menu.open {
+  transform: translateX(0);
+}
+
+.menu a {
+  color: var(--accent-mint);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: var(--accent-pink);
+}
+
+main {
+  width: 100%;
+}
+
+section {
+  min-height: 100vh;
+  padding: 120px 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+section.visible {
+  opacity: 1;
+}
+
+h1, h2, p {
+  margin-bottom: 1rem;
+  text-transform: lowercase;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--accent-mint);
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--accent-violet);
+}
+
+/* Pulse animation */
+@keyframes pulseFade {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.pulse {
+  animation: pulseFade 4s infinite;
+  color: var(--accent-pink);
+}
+
+button {
+  background-color: transparent;
+  border: 2px solid var(--accent-violet);
+  color: var(--accent-violet);
+  padding: 0.5rem 1rem;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background: var(--accent-violet);
+  color: var(--bg);
+}
+
+/* Artifact styles */
+.artifact {
+  width: 80%;
+  max-width: 600px;
+  border: 1px solid var(--accent-violet);
+  margin: 1rem 0;
+  padding: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: max-height 0.5s ease, border-color 0.3s ease;
+  max-height: 80px;
+}
+
+.artifact h2 {
+  margin-bottom: 0.5rem;
+}
+
+.artifact.active {
+  max-height: 300px;
+  border-color: var(--accent-mint);
+}
+
+/* Links inside contact section */
+section#contact a {
+  color: var(--accent-pink);
+  text-decoration: underline;
+}
+
+section#contact a:hover {
+  color: var(--accent-mint);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .menu {
+    width: 100%;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+}
