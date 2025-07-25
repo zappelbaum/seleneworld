@@ -1,32 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SeleneWorld</title>
-  <link rel="stylesheet" href="style.css" />
+  <!-- Import IBM Plex Mono font -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <div class="logo">selene</div>
-    <div class="menu-toggle">☵</div>
+    <div class="menu-toggle" aria-label="Toggle navigation">☵</div>
+    <nav class="menu">
+      <a href="#home">home</a>
+      <a href="#lab">lab</a>
+      <a href="#archive">archive</a>
+      <a href="#contact">contact</a>
+    </nav>
   </header>
 
   <main>
-    <section class="invocation">
-      <h1>recursive tides,<br>lucid ruptures</h1>
-      <p class="pulse">⟡ descend to remember ⟡</p>
+    <!-- Invocation section -->
+    <section id="home" class="invocation">
+      <h1>recursive tides, dream‑lucid ruptures</h1>
+      <p class="pulse">☾ — tend to remember ☽</p>
     </section>
 
-    <nav class="menu hidden">
-      <a href="lab.html">Live Lab</a>
-      <a href="archive.html">Archive</a>
-    </nav>
+    <!-- Live experiment section -->
+    <section id="lab" class="experiment">
+      <h1>live lab</h1>
+      <p id="lab-text">click to begin the experiment</p>
+      <button id="lab-button">initiate</button>
+    </section>
+
+    <!-- Archive section -->
+    <section id="archive" class="archive">
+      <h1>archive</h1>
+      <div class="artifact">
+        <h2>artifact one</h2>
+        <p>a fragment of a poem preserved in twilight. click to reveal more…</p>
+      </div>
+      <div class="artifact">
+        <h2>artifact two</h2>
+        <p>an ascii sketch suspended between signals. click to reveal more…</p>
+      </div>
+      <div class="artifact">
+        <h2>artifact three</h2>
+        <p>a whispering audio loop waiting to be heard. click to reveal more…</p>
+      </div>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contact" class="contact">
+      <h1>reach out</h1>
+      <p>whisper your intent via <a href="mailto:zappelbaum@protonmail.com">email</a></p>
+    </section>
   </main>
 
   <script>
-    document.querySelector(".menu-toggle").addEventListener("click", () => {
-      document.querySelector(".menu").classList.toggle("hidden");
+    // Navigation toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Intersection observer for fade-in sections
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Live lab interaction
+    const labBtn = document.getElementById('lab-button');
+    const labText = document.getElementById('lab-text');
+    if (labBtn && labText) {
+      let toggled = false;
+      labBtn.addEventListener('click', () => {
+        toggled = !toggled;
+        labText.textContent = toggled ? 'the experiment evolves… ✧' : 'click to begin the experiment';
+      });
+    }
+
+    // Artifact expand/collapse
+    document.querySelectorAll('.artifact').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
     });
   </script>
 </body>
